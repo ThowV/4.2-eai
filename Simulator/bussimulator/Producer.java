@@ -21,7 +21,7 @@ public class Producer {
     // private static String url = "failover://tcp://localhost:8081";
     // private static String url = "tcp://localhost:8081";
     // TODO hier de naam van de destination invullen
-    private static String subject = "infoborden";
+    private static String subject = "busInfo";
 
     private Session session;
     private Connection connection;
@@ -30,6 +30,11 @@ public class Producer {
     public Producer() {
     }
 
+    /**
+     * Send a message to the ActiveMQ broker.
+     * 
+     * @param bericht The message in XML format.
+     */
     public void sendBericht(String bericht) {
         try {
             createConnection();
@@ -60,7 +65,7 @@ public class Producer {
         session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
         // TODO maak de destination aan (gebruik de subject variabele als naam)
-        Destination destination = session.createTopic(subject);
+        Destination destination = session.createQueue(subject);
 
         // TODO maak de producer aan
         producer = session.createProducer(destination);

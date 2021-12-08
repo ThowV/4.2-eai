@@ -100,6 +100,11 @@ public class Bus {
 		sendBericht(bericht);
 	}
 
+	/**
+	 * Convert the message to XML and send to the producer.
+	 * 
+	 * @param bericht
+	 */
 	public void sendBericht(Bericht bericht) {
 		// TODO gebruik XStream om het binnengekomen bericht om te zetten
 		// naar een XML bestand (String)
