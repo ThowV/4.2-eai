@@ -38,8 +38,8 @@ public class Bus {
 		halteNummer += richting;
 		bijHalte = true;
 		if ((halteNummer >= lijn.getLengte() - 1) || (halteNummer == 0)) {
-			System.out.printf("Bus %s heeft eindpunt (halte %s, richting %d) bereikt.%n",
-					lijn.name(), lijn.getHalte(halteNummer), lijn.getRichting(halteNummer) * richting);
+			System.out.printf("Bus %s (%s) heeft eindpunt (halte %s, richting %d) bereikt.%n",
+					lijn.name(), this.bedrijf, lijn.getHalte(halteNummer), lijn.getRichting(halteNummer) * richting);
 			return true;
 		} else {
 			System.out.printf("Bus %s heeft halte %s, richting %d bereikt.%n",
@@ -106,15 +106,15 @@ public class Bus {
 	 * @param bericht
 	 */
 	public void sendBericht(Bericht bericht) {
-		// TODO gebruik XStream om het binnengekomen bericht om te zetten
+		// Gebruik XStream om het binnengekomen bericht om te zetten
 		// naar een XML bestand (String)
 		XStream xstream = new XStream();
 
-		// TODO zorg er voor dat de XML-tags niet het volledige pad van de
+		// Zorg er voor dat de XML-tags niet het volledige pad van de
 		xstream.alias("Bericht", Bericht.class);
 		xstream.alias("ETA", ETA.class);
 
-		// TODO maak de XML String aan en verstuur het bericht
+		// Maak de XML String aan en verstuur het bericht
 		String xml = xstream.toXML(bericht);
 		Producer producer = new Producer();
 		producer.sendBericht(xml);

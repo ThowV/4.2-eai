@@ -24,16 +24,6 @@ public class QueueListener implements MessageListener {
 				TextMessage textMessage = (TextMessage) message;
 				String text = textMessage.getText();
 
-				Iterator<String> omgKutJava = textMessage.getPropertyNames().asIterator();
-				while (omgKutJava.hasNext()) {
-					String jezueindelijk = omgKutJava.next();
-					Object value = textMessage.getObjectProperty(jezueindelijk);
-					System.out.println(String.format("%s: %s", jezueindelijk, value));
-				}
-
-				// System.out.println(text);
-
-				// System.out.println("Consumer("+consumerName+")");
 				berichten.nieuwBericht(text);
 				infobord.updateBord();
 			} else {

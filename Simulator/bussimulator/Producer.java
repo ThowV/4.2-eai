@@ -20,7 +20,8 @@ public class Producer {
     private static String url = ActiveMQConnection.DEFAULT_BROKER_URL;
     // private static String url = "failover://tcp://localhost:8081";
     // private static String url = "tcp://localhost:8081";
-    // TODO hier de naam van de destination invullen
+
+    // Hier de naam van de destination invullen
     private static String subject = "busInfo";
 
     private Session session;
@@ -48,31 +49,22 @@ public class Producer {
     private void createConnection() throws JMSException {
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(url); // ConnectionServiceJSONSingletonBEANZMethodFactoryFactory
 
-        // TODO maak de connection aan
+        // Maak de connection aan
         connection = connectionFactory.createConnection();
         connection.start();
 
-        // TODO maak de session aan
-
-        // acknowledgeMode - when transacted is false, indicates how messages received
-        // by the session will be acknowledged, except in the cases described above when
-        // this value is ignored.
-        // static final int AUTO_ACKNOWLEDGE = 1;
-        // static final int CLIENT_ACKNOWLEDGE = 2;
-        // static final int DUPS_OK_ACKNOWLEDGE = 3;
-        // static final int SESSION_TRANSACTED = 0;
-        // session = connection.createSession(false, Session.CLIENT_ACKNOWLEDGE);
+        // Maak de session aan
         session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-        // TODO maak de destination aan (gebruik de subject variabele als naam)
+        // Maak de destination aan (gebruik de subject variabele als naam)
         Destination destination = session.createQueue(subject);
 
-        // TODO maak de producer aan
+        // Maak de producer aan
         producer = session.createProducer(destination);
     }
 
     private void sendTextMessage(String message) throws JMSException {
-        // TODO maak de message aan
+        // Maak de message aan
         TextMessage msg = new ActiveMQTextMessage();
         msg.setText(message);
         producer.send(msg);
