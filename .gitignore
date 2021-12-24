@@ -3,6 +3,7 @@
 .classpath
 .project
 .pydevproject
+.venv
 
 # Compiled class file
 *.class
